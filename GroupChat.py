@@ -2,10 +2,8 @@
 class GroupChat(object):
 
     def __init__(self, json):
-        self.__name = json[response]["name"]
-        self.__id = json[response]["id"]
-        self.__messages = []
-        self.__members = []
+        self.name = self.__cleanse(json["name"])
+        self.id = json["id"]
 
     def find_messages_any(self, key_words):
         return [message for message in __messages
@@ -17,3 +15,6 @@ class GroupChat(object):
 
     def __get_variations(self, key_words):
         pass
+
+    def __cleanse(self, string):
+        return ''.join(char for char in string if char.isalpha())
